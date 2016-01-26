@@ -22,11 +22,15 @@ if you want to pass data to your function you can do so in the form of an object
 
 the second argument gets passed as one parameter to your function so if you you emit something like this:
 
-`vent.link('myFunctionEvent',myFunction);
-vent.emit('myFunctionEvent',{names:['Tony','Gus','Fred']});`
+```
+vent.link('myFunctionEvent',myFunction);
+vent.emit('myFunctionEvent',{names:['Tony','Gus','Fred']});
+```
 
 your function would look like this...
 
-`myFunction(data){
+```
+myFunction(data){
   console.log(data.names); //Prints ['Tony','Gus','Fred']
-}`
+}
+```
