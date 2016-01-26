@@ -1,4 +1,4 @@
-var vent = {
+var venti = {
     "registeredEvents" : {},
     emit: function (str) {
         'use strict';
