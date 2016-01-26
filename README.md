@@ -1,6 +1,8 @@
 # Vent
 Ultra-tiny custom event emitter for Javascript
 
+**Vent Supports multiple callbacks, you can link unlimited callbacks to a single event**
+
 To use just add vent through a script tag and start using. This is in no way a solution to the majority of situations that you are in, if you are in need of a robust event management system then there are plenty others out there. However if you only want to link a few custom events and send data then this is for you.
 
 ##Linking and Emitting Events##
