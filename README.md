@@ -48,15 +48,15 @@ Or you can pass the callback as the second parameter in order to unlink that spe
 
 ##Logging##
 
-Venti logs all events that are emitted, to view the log simple use.
+Venti logs all events that are emitted, to view the log simply use.
 
 `venti.log(50) //Optional limit parameter (E.G. Only show the most recent 50)`
 
-By default is no parameter is passed to `.log()` then Venti defaults to 1000 you can change this by modifying `venti.eventLogLimit`.
+By default if no parameter is passed to `.log()` then Venti defaults to 1000; you can change this by modifying `venti.eventLogLimit`.
 
 ##Misc##
 
-As it is required by the logging system, venti can also return the plaintext name of a callback, simply use `venti.nameFromFunction(callback)` to retrieve the name of the function, this might be useful if you wish to log custom messages of your own.
+As it is required by the logging system, Venti can also return the plaintext name of a callback, simply use `venti.nameFromFunction(callback)` to retrieve the name of the function, this might be useful if you wish to log custom messages of your own.
 
 
 
