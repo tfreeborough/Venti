@@ -1,5 +1,5 @@
-# Venti
-Ultra-tiny custom event emitter for Javascript
+# Venti ![Venti Logo](http://i.imgur.com/8NWTW1r.png "Venti")
+Ultra-tiny custom event emitter for Javascript 
 
 **Venti Supports multiple callbacks, you can link unlimited callbacks to a single event**
 
