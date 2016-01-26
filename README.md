@@ -15,8 +15,7 @@ You can emit events like so
 
 `venti.emit('eventName');`
 
-
-###Passing Data###
+####Passing Data####
 
 if you want to pass data to your function you can do so in the form of an object like so
 
@@ -36,3 +35,28 @@ myFunction(data){
   console.log(data.names); //Prints ['Tony','Gus','Fred']
 }
 ```
+
+##Unlinking##
+
+Unlinking events is very simple, you can pass the name of the event to remove everything associated with that event name.
+
+`venti.unlink('eventName');`
+
+Or you can pass the callback as the second parameter in order to unlink that specific function from the events.
+
+`venti.unlink('eventName',callback);`
+
+##Logging##
+
+Venti logs all events that are emitted, to view the log simple use.
+
+`venti.log(50) //Optional limit parameter (E.G. Only show the most recent 50)`
+
+By default is no parameter is passed to `.log()` then Venti defaults to 1000 you can change this by modifying `venti.eventLogLimit`.
+
+##Misc##
+
+As it is required by the logging system, venti can also return the plaintext name of a callback, simply use `venti.nameFromFunction(callback)` to retrieve the name of the function, this might be useful if you wish to log custom messages of your own.
+
+
+
