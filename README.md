@@ -5,27 +5,27 @@ Ultra-tiny custom event emitter for Javascript
 
 To use just add Venti through a script tag and start using. This is in no way a solution to the majority of situations that you are in, if you are in need of a robust event management system then there are plenty others out there. However if you only want to link a few custom events and send data then this is for you.
 
-##Linking and Emitting Events##
+##Registering and Triggering Events##
 
-Link event like so:
+Register event like so:
 
-`venti.link('eventName',functionName);`
+`venti.on('eventName',functionName);`
 
-You can emit events like so
+You can trigger events like so
 
-`venti.emit('eventName');`
+`venti.trigger('eventName');`
 
 ####Passing Data####
 
 if you want to pass data to your function you can do so in the form of an object like so
 
-`venti.emit('eventName',{Data Goes Here});`
+`venti.trigger('eventName',{Data Goes Here});`
 
-the second argument gets passed as one parameter to your function so if you you emit something like this:
+the second argument gets passed as one parameter to your function so if you you trigger something like this:
 
 ```
-venti.link('myFunctionEvent',myFunction);
-venti.emit('myFunctionEvent',{names:['Tony','Gus','Fred']});
+venti.on('myFunctionEvent',myFunction);
+venti.trigger('myFunctionEvent',{names:['Tony','Gus','Fred']});
 ```
 
 your function would look like this...
@@ -36,23 +36,23 @@ myFunction(data){
 }
 ```
 
-##Unlinking##
+##Unregistering events##
 
-Unlinking events is very simple, you can pass the name of the event to remove everything associated with that event name.
+Unregistering events is very simple, you can pass the name of the event to remove everything associated with that event name.
 
-`venti.unlink('eventName');`
+`venti.off('eventName');`
 
-Or you can pass the callback as the second parameter in order to unlink that specific function from the events.
+Or you can pass the callback as the second parameter in order to unregister that specific function from the event.
 
-`venti.unlink('eventName',callback);`
+`venti.off('eventName',callback);`
 
 ##Logging##
 
-Venti logs all events that are emitted, to view the log simply use.
+Venti logs all events that are triggered, to view the log simply use.
 
-`venti.log(50) //Optional limit parameter (E.G. Only show the most recent 50)`
+`venti.eventLog(50) //Optional limit parameter (E.G. Only show the most recent 50)`
 
-By default if no parameter is passed to `.log()` then Venti defaults to 1000; you can change this by modifying `venti.eventLogLimit`.
+By default if no parameter is passed to `.eventLog()` then Venti defaults to 1000; you can change this by modifying `venti.eventLogLimit`.
 
 ##Misc##
 
