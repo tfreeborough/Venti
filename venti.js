@@ -29,7 +29,12 @@ var venti = {
     link: function (str, callback) {
         'use strict';
         if(typeof this.registeredEvents[str] === 'undefined'){ this.registeredEvents[str] = []; }
+        if(this.registeredEvents[str].indexOf(callback) !== -1){
+            console.warn('Venti - Notice: You tried to re-link a function that was already registered.');
+            delete this.registeredEvents[str][this.registeredEvents[str].indexOf(callback)];
+        }
         this.registeredEvents[str].push(callback);
+        this.registeredEvents[str] = this.registeredEvents[str].filter(function(){return true;});
     },
     unlink: function (str, callback) {
         'use strict';
