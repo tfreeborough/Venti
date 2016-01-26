@@ -2,7 +2,7 @@ var venti = {
     "eventLogLimit": 1000,
     "registeredEvents" : {},
     "log": [],
-    emit: function (str) {
+    trigger: function (str) {
         'use strict';
         var args = Array.prototype.splice.call(arguments, 1);
         var event = this.registeredEvents[str];
@@ -26,17 +26,17 @@ var venti = {
         if(typeof limit !== 'undefined'){ l = limit }
         return this.log.reverse().splice(0,limit);
     },
-    link: function (str, callback) {
+    on: function (str, callback) {
         'use strict';
         if(typeof this.registeredEvents[str] === 'undefined'){ this.registeredEvents[str] = []; }
         if(this.registeredEvents[str].indexOf(callback) !== -1){
-            console.warn('Venti - Notice: You tried to re-link a function that was already registered.');
+            console.warn('Venti - Notice: You tried to re-link a function ('+this.nameFromFunction(callback)+') that was already registered to this event.');
             delete this.registeredEvents[str][this.registeredEvents[str].indexOf(callback)];
         }
         this.registeredEvents[str].push(callback);
         this.registeredEvents[str] = this.registeredEvents[str].filter(function(){return true;});
     },
-    unlink: function (str, callback) {
+    off: function (str, callback) {
         'use strict';
         if(typeof callback !== 'undefined'){
             if(typeof this.registeredEvents[str] !== 'undefined'){
