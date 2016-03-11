@@ -30,7 +30,11 @@ var venti = {
         'use strict';
         if(typeof this.registeredEvents[str] === 'undefined'){ this.registeredEvents[str] = []; }
         if(this.registeredEvents[str].indexOf(callback) !== -1){
-            console.warn('Venti - Notice: You tried to re-link a function ('+this.nameFromFunction(callback)+') that was already registered to this event.');
+            if(typeof callback == 'undefined'){
+                console.error('Venti - You have declared an undefined function inside your .on function for event '+str);
+            }else{
+                console.warn('Venti - Notice: You tried to re-link a function ('+this.nameFromFunction(callback)+') that was already registered to this event.');
+            }
             delete this.registeredEvents[str][this.registeredEvents[str].indexOf(callback)];
         }
         this.registeredEvents[str].push(callback);
