@@ -36,7 +36,7 @@ myFunction(data){
 }
 ```
 
-##Unregistering events##
+## Unregistering events ##
 
 Unregistering events is very simple, you can pass the name of the event to remove everything associated with that event name.
 
