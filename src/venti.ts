@@ -1,8 +1,8 @@
-export const venti = {
+const venti = {
     "eventLogLimit": 1000,
     "registeredEvents" : {},
     "log": [],
-    trigger: (str) => {
+    trigger: function(str) {
         'use strict';
         const args = Array.prototype.splice.call(arguments, 1);
         const event = this.registeredEvents[str];
@@ -21,12 +21,12 @@ export const venti = {
         ret = ret.substring('function '.length);
         return ret.substring(0, ret.indexOf('('));
     },
-    eventLog: (limit) => {
+    eventLog: function(limit) {
         let l = this.eventLogLimit;
         if(typeof limit !== 'undefined'){ l = limit }
         return this.log.reverse().splice(0,limit);
     },
-    on: (str, callback) => {
+    on: function(str, callback) {
         'use strict';
         if(typeof this.registeredEvents[str] === 'undefined'){ this.registeredEvents[str] = []; }
         if(this.registeredEvents[str].indexOf(callback) !== -1){
@@ -40,7 +40,7 @@ export const venti = {
         this.registeredEvents[str].push(callback);
         this.registeredEvents[str] = this.registeredEvents[str].filter(function(){return true;});
     },
-    off: (str, callback) => {
+    off: function(str, callback) {
         'use strict';
         if(typeof callback !== 'undefined'){
             if(typeof this.registeredEvents[str] !== 'undefined'){
@@ -52,3 +52,5 @@ export const venti = {
 
     }
 };
+
+export default venti;
