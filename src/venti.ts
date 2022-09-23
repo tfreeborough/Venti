@@ -1,33 +1,52 @@
-const venti = {
-    "eventLogLimit": 1000,
-    "registeredEvents" : {},
-    "log": [],
-    trigger: function(str, args: any = undefined) {
-        'use strict';
-        const event = this.registeredEvents[str];
-        if(typeof event !== 'undefined'){
-            const that = this;
-            event.forEach((e) => {
-                e.apply(null, args);
-                that.log.push({event:str,callback: that.nameFromFunction(e)});
+type EventLog = {
+    event: string,
+    callback: string,
+}
+
+class Venti {
+    eventLogLimit = 1000;
+    registeredEvents: any = {};
+    log: EventLog[] = [];
+
+    private static _instance: Venti;
+
+    private constructor() { }
+
+    public static instance(): Venti {
+        if(!Venti._instance){
+            Venti._instance = new Venti();
+        }
+        return Venti._instance;
+    }
+
+    trigger(str: string, data: any = undefined){
+        const events = this.registeredEvents[str];
+        if(events){
+            events.forEach((e: Function) => {
+                e(data);
+                this.log.push({event:str,callback: this.nameFromFunction(e)});
             });
-        }else{
+        } else {
             console.warn('Venti - Notice: You tried to emit an event ('+str+') which is not registered.');
         }
-    },
-    nameFromFunction: (callback) => {
+    }
+
+    nameFromFunction(callback: Function) {
         let ret = callback.toString();
         ret = ret.substring('function '.length);
         return ret.substring(0, ret.indexOf('('));
-    },
-    eventLog: function(limit) {
+    }
+
+    eventLog(limit: number) {
         let l = this.eventLogLimit;
         if(typeof limit !== 'undefined'){ l = limit }
-        return this.log.reverse().splice(0,limit);
-    },
-    on: function(str, callback) {
-        'use strict';
-        if(typeof this.registeredEvents[str] === 'undefined'){ this.registeredEvents[str] = []; }
+        return this.log.reverse().splice(0,l);
+    }
+
+    on(str: string, callback: Function) {
+        if(typeof this.registeredEvents[str] === 'undefined'){
+            this.registeredEvents[str] = [];
+        }
         if(this.registeredEvents[str].indexOf(callback) !== -1){
             if(typeof callback == 'undefined'){
                 console.error('Venti - You have declared an undefined function inside your .on function for event '+str);
@@ -38,10 +57,10 @@ const venti = {
         }
         this.registeredEvents[str].push(callback);
         this.registeredEvents[str] = this.registeredEvents[str].filter(function(){return true;});
-    },
-    off: function(str, callback) {
-        'use strict';
-        if(typeof callback !== 'undefined'){
+    }
+
+    off(str: string, callback: Function) {
+        if(callback){
             if(typeof this.registeredEvents[str] !== 'undefined'){
                 delete this.registeredEvents[str][this.registeredEvents[str].indexOf(callback)];
             }
@@ -50,6 +69,6 @@ const venti = {
         }
 
     }
-};
+}
 
-export default venti;
+export default Venti.instance();
