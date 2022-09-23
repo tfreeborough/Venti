@@ -1,6 +1,6 @@
 {
   "name": "venti-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A tiny zero dependency event emitter for JS",
   "main": "dist/venti.js",
   "typings": "dist/venti.d.ts",
