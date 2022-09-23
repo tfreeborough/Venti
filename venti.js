@@ -1,14 +1,14 @@
-var venti = {
+export const venti = {
     "eventLogLimit": 1000,
     "registeredEvents" : {},
     "log": [],
-    trigger: function (str) {
+    trigger: (str) => {
         'use strict';
-        var args = Array.prototype.splice.call(arguments, 1);
-        var event = this.registeredEvents[str];
+        const args = Array.prototype.splice.call(arguments, 1);
+        const event = this.registeredEvents[str];
         if(typeof event !== 'undefined'){
-            var that = this;
-            event.forEach(function(e,i,a){
+            const that = this;
+            event.forEach((e) => {
                 e.apply(null, args);
                 that.log.push({event:str,callback: that.nameFromFunction(e)});
             });
@@ -16,17 +16,17 @@ var venti = {
             console.warn('Venti - Notice: You tried to emit an event ('+str+') which is not registered.');
         }
     },
-    nameFromFunction: function(callback){
-        var ret = callback.toString();
-        ret = ret.substr('function '.length);
-        return ret.substr(0, ret.indexOf('('));
+    nameFromFunction: (callback) => {
+        let ret = callback.toString();
+        ret = ret.substring('function '.length);
+        return ret.substring(0, ret.indexOf('('));
     },
-    eventLog: function(limit){
-        var l = this.eventLogLimit;
+    eventLog: (limit) => {
+        let l = this.eventLogLimit;
         if(typeof limit !== 'undefined'){ l = limit }
         return this.log.reverse().splice(0,limit);
     },
-    on: function (str, callback) {
+    on: (str, callback) => {
         'use strict';
         if(typeof this.registeredEvents[str] === 'undefined'){ this.registeredEvents[str] = []; }
         if(this.registeredEvents[str].indexOf(callback) !== -1){
@@ -40,7 +40,7 @@ var venti = {
         this.registeredEvents[str].push(callback);
         this.registeredEvents[str] = this.registeredEvents[str].filter(function(){return true;});
     },
-    off: function (str, callback) {
+    off: (str, callback) => {
         'use strict';
         if(typeof callback !== 'undefined'){
             if(typeof this.registeredEvents[str] !== 'undefined'){
