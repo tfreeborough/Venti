@@ -1,0 +1,25 @@
+{
+  "name": "venti",
+  "version": "1.0.0",
+  "description": "A tiny zero dependency event emitter for JS",
+  "main": "venti.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angrytoad/Venti.git"
+  },
+  "keywords": [
+    "javascript",
+    "events",
+    "event",
+    "emitter"
+  ],
+  "author": "Tom Freeborough",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angrytoad/Venti/issues"
+  },
+  "homepage": "https://github.com/angrytoad/Venti#readme"
+}
