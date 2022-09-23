@@ -2,9 +2,8 @@ const venti = {
     "eventLogLimit": 1000,
     "registeredEvents" : {},
     "log": [],
-    trigger: function(str) {
+    trigger: function(str, args: any = undefined) {
         'use strict';
-        const args = Array.prototype.splice.call(arguments, 1);
         const event = this.registeredEvents[str];
         if(typeof event !== 'undefined'){
             const that = this;
