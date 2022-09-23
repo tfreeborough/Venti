@@ -1,11 +1,14 @@
 # Venti ![Venti Logo](http://i.imgur.com/8NWTW1r.png "Venti")
 Ultra-tiny custom event emitter for Javascript 
 
-**Venti Supports multiple callbacks, you can link unlimited callbacks to a single event**
+### NPM - https://www.npmjs.com/package/venti-js
 
-To use just add Venti through a script tag and start using. This is in no way a solution to the majority of situations that you are in, if you are in need of a robust event management system then there are plenty others out there. However if you only want to link a few custom events and send data then this is for you.
+A very simple out of the box library I first made in 2016 that allows you to bind multiple callback to an event and call it with/without data. Perfect if you just want a quick and easy way to call events in an application without worrying about prop drilling.
 
-## Registering and Triggering Events ##
+## Does this work with React?
+Yes
+
+## HOW TO USE ##
 
 Register event like so:
 
