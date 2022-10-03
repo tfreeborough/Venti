@@ -65,6 +65,24 @@ class Venti {
           .splice(0,limit)
     }
 
+    /**
+     * Returns all calls ordered by most recent for a given event name
+     * can also take an optional limit that defaults to the
+     * eventLogLimit just in case you have an event that
+     * fires loads of times.
+     * @param eventName
+     * @param limit
+     */
+    getCallsForEvent(
+      eventName: string,
+      limit: number = this.eventLogLimit
+    ) {
+        return this.log.reverse()
+          .filter((e) => e.event === eventName)
+
+          .splice(0,limit)
+    }
+
     on(str: string, callback: Function) {
         if(typeof this.registeredEvents[str] === 'undefined'){
             this.registeredEvents[str] = [];
