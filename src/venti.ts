@@ -79,7 +79,6 @@ class Venti {
     ) {
         return this.log.reverse()
           .filter((e) => e.event === eventName)
-
           .splice(0,limit)
     }
 
