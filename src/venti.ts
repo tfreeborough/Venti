@@ -42,6 +42,30 @@ class Venti {
     }
 
     /**
+     * Takes a callback prop (can either be the string name or the callback itself) and returns an array of all the
+     * events that have been called with that specific callback, takes an optional limit as a second param that
+     * defaults to the eventLogLimit if not provided.
+     * @param callback
+     * @param limit
+     */
+    getCallsForCallback(
+      callback: string | Function,
+      limit: number = this.eventLogLimit
+    ) {
+        let callbackName = callback;
+        /**
+         * If the callback isn't a string (i.e its a function) then gets its string name
+         */
+        if(typeof callback !== "string")
+        {
+            callbackName = this.nameFromFunction(callback);
+        }
+        return this.log.reverse()
+          .filter((e) => e.callback === callbackName)
+          .splice(0,limit)
+    }
+
+    /**
      * Returns all calls ordered by most recent for a given event name
      * can also take an optional limit that defaults to the
      * eventLogLimit just in case you have an event that
