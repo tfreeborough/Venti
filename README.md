@@ -133,6 +133,47 @@ export const MyComponent: React.FC = (): ReactElement => {
 export default MyComponent;
 ```
 
+Usage with multiple callbacks
+
+```typescript
+import React, { ReactElement, useEffect, useState } from 'react';
+import venti from 'venti-js';
+
+export const MyComponent: React.FC = (): ReactElement => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [formState, setFormState] = useState({});
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+  
+  const handleResetFormState = () => {
+    setFormState({});  
+  }
+
+  useEffect(() => {
+    venti.on('modalOpen', handleOpenModal);
+    venti.on('modalOpen', handleResetFormState);
+
+    return () => {
+      venti.off('modalOpen');
+    };
+  }, []);
+
+  if (!modalOpen) {
+    return null;
+  }
+  
+  return (
+    <div className="myModal">
+      // Form Stuff goes here
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
 
 ### Misc
 
