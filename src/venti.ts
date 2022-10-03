@@ -37,10 +37,8 @@ class Venti {
         return ret.substring(0, ret.indexOf('('));
     }
 
-    eventLog(limit: number) {
-        let l = this.eventLogLimit;
-        if(typeof limit !== 'undefined'){ l = limit }
-        return this.log.reverse().splice(0,l);
+    eventLog(limit: number = this.eventLogLimit) {
+        return this.log.reverse().splice(0,limit);
     }
 
     on(str: string, callback: Function) {
