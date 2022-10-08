@@ -7,6 +7,7 @@ class Venti {
     eventLogLimit = 1000;
     registeredEvents: any = {};
     log: EventLog[] = [];
+    debug = false;
 
     private static _instance: Venti;
 
@@ -27,7 +28,7 @@ class Venti {
                 this.log.push({event:str,callback: this.nameFromFunction(e)});
             });
         } else {
-            console.warn('Venti - Notice: You tried to emit an event ('+str+') which is not registered.');
+            this.debug ?? console.warn('Venti - Notice: You tried to emit an event ('+str+') which is not registered.');
         }
     }
 
@@ -88,9 +89,9 @@ class Venti {
         }
         if(this.registeredEvents[str].indexOf(callback) !== -1){
             if(typeof callback == 'undefined'){
-                console.error('Venti - You have declared an undefined function inside your .on function for event '+str);
+                this.debug ?? console.error('Venti - You have declared an undefined function inside your .on function for event '+str);
             }else{
-                console.warn('Venti - Notice: You tried to re-link a function ('+this.nameFromFunction(callback)+') that was already registered to this event.');
+                this.debug ?? console.warn('Venti - Notice: You tried to re-link a function ('+this.nameFromFunction(callback)+') that was already registered to this event.');
             }
             delete this.registeredEvents[str][this.registeredEvents[str].indexOf(callback)];
         }
